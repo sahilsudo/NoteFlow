@@ -21,58 +21,82 @@
         <i class="fa-solid fa-note-sticky"></i><span>NoteFlow</span>
       </div>
       <ul class="nav-links">
-        <li class="navlink active">My Notes</li>
-        <li class="navlink">Archive</li>
-        <li class="navlink">Trash</li>
+
+        <li class="navlink active openNote">My Notes</li>
+        <li class="navlink openarchive">Archive</li>
+        <li class="navlink opentrash">Trash</li>
       </ul>
     </div>
 
     <div class="nav-right">
       <input type="text" placeholder="Search notes..." class="search">
-      <div class="icon">⚙️</div>
+      <div class="icon"><i class="fa-solid fa-gear"></i></div>
       <div class="profile">S</div>
     </div>
   </nav>
 
   <!-- Main Section -->
   <section class="container">
+    <div class="mynotes">
 
-    <h1>My Notes</h1>
-    <p class="subtitle">Organize your thoughts and stay productive.</p>
+      <h1>My Notes</h1>
+      <p class="subtitle">Organize your thoughts and stay productive.</p>
 
-    <!-- Archive -->
-    <div>
+      <!-- Note Card -->
+      <div class="note-card">
+        <input type="text" placeholder="Note Title" class="note-title">
+        <textarea class="note-text" placeholder="Start typing your note here..."></textarea>
 
-    </div>
-
-    <!-- Note Card -->
-    <div class="note-card">
-      <input type="text" placeholder="Note Title" class="note-title">
-      <textarea class="note-text" placeholder="Start typing your note here..."></textarea>
-
-      <div class="note-footer">
-        <div class="icons">
-          <i class="fa-solid fa-plus"></i>
-          <i class="fa-solid fa-paperclip"></i>
-          <i class="fa-regular fa-square-check"></i>
+        <div class="note-footer">
+          <div class="icons">
+            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-paperclip"></i>
+            <i class="fa-regular fa-square-check"></i>
+          </div>
+          <button class="add-btn">+ Add Note</button>
         </div>
-        <button class="add-btn">+ Add Note</button>
       </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <span class="tab allnotes active" >All Notes</span>
+        <span class="tab openwork">Work</span>
+        <span class="tab openpersonal">Personal</span>
+      </div>
+
+      <!-- work section -->
+    <div class="work" style="display: none;">
+        <h1>Work Notes</h1>
+        <p class="subtitle">Your work-related notes will appear here.</p>
     </div>
 
-    <!-- Tabs -->
-    <div class="tabs">
-      <span class="tab active">All Notes</span>
-      <span class="tab">Work</span>
-      <span class="tab">Personal</span>
+    <!-- personal section -->
+    <div class="personal" style="display: none;">
+        <h1>Personal Notes</h1>
+        <p class="subtitle">Your personal notes will appear here.</p>
     </div>
 
-    <!-- note area -->
-    <div class="content">
-
+      <!-- note area -->
+      <div class="content">
+        
+      </div>
+      <!-- Archive Container -->
     </div>
+    <div class="archive" style="display: none;">
+      <h1>Archived Notes</h1>
+      <p class="subtitle">Your archived notes will appear here.</p>
+    </div>
+
+  <div class="trash" style="display: none;">
+    <h1>Trash Notes</h1>
+    <p class="subtitle">Your deleted notes will appear here.</p>
+  </div>
   </section>
+
   <script src="script.js"></script>
 </body>
+
+
+
 
 </html>

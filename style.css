@@ -88,7 +88,9 @@ body {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
+  /* display: none; */
 }
+
 
 h1 {
   font-size: 32px;
@@ -130,8 +132,60 @@ h1 {
   background: white;
   padding: 25px;
   border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.note-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.archive {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
+  display: none;
+}
+
+.archive:hover {
+  transform: translateY(-3px);
+}
+
+
+/* page change animation */
+@keyframes pageSwitch {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mynotes,
+.archive,
+.trash {
+    animation: pageSwitch 0.35s ease;
+}
+
+.trash {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  display: none;
+}
+
+.trash:hover {
+  transform: translateY(-3px);
 }
 
 .note-title {
@@ -178,10 +232,13 @@ textarea {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  transition: 0.3s;
+  /* transition: 0.3s; */
+  transition: all 0.3s ease;
 }
 
 .add-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   background: #1d4ed8;
 }
 
@@ -219,18 +276,65 @@ textarea {
   width:100%;
 }
 
+.work {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  display: none;
+}
+
+.work:hover {
+  transform: translateY(-3px);
+}
+
+.personal {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  display: none;
+}
+
+.personal:hover {
+  transform: translateY(-3px);
+}
+
+/* page change animation */
+@keyframes pageSwitch {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.note-box,
+.Work,
+.Personal {
+    animation: pageSwitch 0.35s ease;
+}
+
 .content {
   margin-top: 15px;
   /* display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr); */
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   gap: 15px;
 }
 
 .notes-container {
-  width: 276px;
+  /* width: 276px; */
+  margin-bottom: 15px;
+
 }
 
 .note-box {
@@ -238,11 +342,15 @@ textarea {
   padding: 18px;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s;
+  transition: all 0.3s ease;
 }
 
 .note-box:hover {
-  transform: translateY(-3px);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+.note-box:active {
+  transform: scale(0.95);
 }
 
 .note-header {
@@ -259,27 +367,56 @@ textarea {
 .delete-btn {
   border: none;
   background: none;
-  font-size: 18px;
+  font-size: 15px;
   cursor: pointer;
 }
 
+.delete-btn:hover {
+  color: #C70000;
+}
+
+.menu-btn {
+  border: none;
+  background: none;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.menu-btn:hover {
+  background: #e0e0e1;
+  border-radius: 50%;
+}
+
 /* note text */
-.note-text {
+/* .note-text {
   margin-top: 10px;
   font-size: 14px;
   color: #555;
-}
+} */
 
 /* hidden full note */
-.full {
+/* .full {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
-}
+} */
 
 /* active class when opened */
-.full.active {
-  max-height: 200px;
+/* .full.active {
+  max-height: 200px; 
+} */
+
+.note-text.full {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+.note-text.full.active {
+    max-height: 500px; /* adjust if notes can be longer */
+    opacity: 1;
 }
 
 /* READ BUTTON STYLE */
@@ -292,7 +429,7 @@ textarea {
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(135deg, #6c63ff, #4b47d6);
+  background: #2563eb;
   color: white;
   transition: all 0.3s ease;
 }
@@ -300,6 +437,7 @@ textarea {
 /* hover animation */
 
 .read-btn:hover {
+  background: #1d4ed8;
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
