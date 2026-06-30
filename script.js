@@ -8,6 +8,8 @@ const opentrash = document.querySelector(".opentrash");
 const mynotes = document.querySelector(".mynotes");
 const archive = document.querySelector(".archive");
 const trash = document.querySelector(".trash");
+const menuBtn = document.querySelector(".bar");
+const menuCard = document.querySelector(".menu-card");
 const addbtn = document.querySelector(".add-btn");
 const content = document.querySelector(".content");
 const navlink = document.querySelectorAll(".navlink");
@@ -18,7 +20,6 @@ const allnotes = document.querySelector(".allnotes");
 const personalsection = document.querySelector(".personal");
 const worksection = document.querySelector(".work");
 const noteCard = document.querySelector(".note-card");
-// const notebox = document.createElement("div");
 
 // nav bar nav-links
 navlink.forEach(link => {
@@ -64,6 +65,24 @@ openpersonal.addEventListener("click", function () {
     content.style.display = "none";
     worksection.style.display = "none";
     personalsection.style.display = "block";
+});
+
+// menu card
+menuBtn.addEventListener("click", function(e){
+    // e.stopPropagation();
+    menuCard.classList.toggle("active");
+});
+
+// Close when clicking outside
+document.addEventListener("click", function (e) {
+
+    if (
+        !menuCard.contains(e.target) &&
+        !menuBtn.contains(e.target)
+    ) {
+        menuCard.classList.remove("active");
+    }
+
 });
 
 const notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -171,10 +190,10 @@ function deleteNote(notetitle) {
     const deleteBtn = document.querySelector(".delete-btn");
 
     deleteBtn.addEventListener("click", function () {
+        console.log(deleteBtn);
         console.log("Delete button clicked");
         console.log(notetitle);
         localStorage.removeItem(notetitle);
-        
     });
 }
 
