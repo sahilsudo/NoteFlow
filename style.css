@@ -92,7 +92,7 @@ body {
     position: absolute;
     top: 70px;
     /* right: 0; */
-    left: 45%;
+    left: 43%;
     width: 220px;
     background: #fff;
 
@@ -151,7 +151,6 @@ body {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
-  /* display: none; */
 }
 
 
@@ -178,7 +177,6 @@ h1 {
   height: 100%;
   top: 0;
   left: 100%;
-  /* Start outside right */
   transition: transform 0.5s ease, left 0.5s ease;
 }
 
@@ -295,7 +293,6 @@ textarea {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  /* transition: 0.3s; */
   transition: all 0.3s ease;
 }
 
@@ -339,7 +336,7 @@ textarea {
   width:100%;
 }
 
-.work {
+.work, .personal{
   background: white;
   padding: 25px;
   border-radius: 12px;
@@ -350,16 +347,6 @@ textarea {
 
 .work:hover {
   transform: translateY(-3px);
-}
-
-.personal {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  /* margin-bottom: 30px; */
-  margin-top: 15px;
-  display: none;
 }
 
 .personal:hover {
@@ -387,11 +374,6 @@ textarea {
 
 .content {
   margin-top: 15px;
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr); */
-  /* display: flex;
-  flex-wrap: wrap; */
   gap: 15px;
 }
 
@@ -455,25 +437,6 @@ textarea {
   border-radius: 50%;
 }
 
-/* note text */
-/* .note-text {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #555;
-} */
-
-/* hidden full note */
-/* .full {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-} */
-
-/* active class when opened */
-/* .full.active {
-  max-height: 200px; 
-} */
-
 .note-text.full {
     max-height: 0;
     overflow: hidden;
@@ -510,7 +473,6 @@ textarea {
 }
 
 /* click animation */
-
 .read-btn:active {
   transform: scale(0.95);
 }
