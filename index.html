@@ -1,119 +1,357 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NoteFlow - Modern Notes Web Application</title>
+    <meta name="description" content="Organize your thoughts, categorize notes, and boost your productivity with NoteFlow." />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NoteFlow</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <div class="logo">
-        <i class="fa-solid fa-note-sticky"></i><span>NoteFlow</span>
-      </div>
-
-      <ul class="nav-links">
-        <li class="navlink active openNote">My Notes</li>
-        <li class="navlink openarchive">Archive</li>
-        <li class="navlink opentrash">Trash</li>
-      </ul>
+  <body>
+    <!-- App Container -->
+    <div class="app-layout">
       
-    </div>
-
-    <div class="nav-right">
-      <input type="text" placeholder="Search notes..." class="search">
-      <div class="icon"><i class="fa-solid fa-gear"></i></div>
-      <div class="profile">S</div>
-      <div class="bar" ><i class="fa-solid fa-bars"></i></div>
-      <!-- <div class="bar" > <i class="fa-solid fa-ellipsis-vertical"></i></i></div> -->
-      <div class="x" style="display: none;"> <i class="fa-solid fa-x"></i></div>
-    </div>
-
-    <!-- MOBILE menu card -->
-      <div class="menu-card">
-        <a href="#"><i class="fa-solid fa-magnifying-glass"></i>Search</a>
-          <a href="#"><i class="fa-solid fa-pen-to-square"></i> My Notes</a>
-          <a href="#"><i class="fas fa-archive"></i> Archive</a>
-          <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
-          <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
-          <hr>
-          <a href="#" class="logout">
-              <i class="fa-solid fa-right-from-bracket"></i> Logout
-          </a>
-      </div>
-  </nav>
-
-  <!-- Main Section -->
-  <section class="container">
-    <div class="mynotes">
-
-      <h1>My Notes</h1>
-      <p class="subtitle">Organize your thoughts and stay productive.</p>
-
-      <!-- Note Card -->
-      <div class="note-card">
-        <input type="text" placeholder="Note Title" class="note-title">
-        <textarea class="note-text" placeholder="Start typing your note here..."></textarea>
-
-        <div class="note-footer">
-          <div class="icons">
-            <i class="fa-solid fa-plus"></i>
-            <i class="fa-solid fa-paperclip"></i>
-            <i class="fa-regular fa-square-check"></i>
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <i class="fa-solid fa-note-sticky"></i><span>NoteFlow</span>
           </div>
-          <button class="add-btn">+ Add Note</button>
+          <button class="close-sidebar-btn" id="closeSidebarBtn" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section-title">Overview</div>
+          <button class="nav-btn active" data-section="dashboard" id="nav-dashboard">
+            <i class="fa-solid fa-chart-simple"></i> Dashboard
+          </button>
+
+          <div class="nav-section-title">My Notes</div>
+          <button class="nav-btn" data-section="active" id="nav-active">
+            <i class="fa-solid fa-pen-to-square"></i> Active Notes
+          </button>
+          <button class="nav-btn" data-section="work" id="nav-work">
+            <i class="fa-solid fa-briefcase"></i> Work Notes
+          </button>
+          <button class="nav-btn" data-section="personal" id="nav-personal">
+            <i class="fa-solid fa-house-user"></i> Personal Notes
+          </button>
+          <button class="nav-btn" data-section="archived" id="nav-archived">
+            <i class="fa-solid fa-box-archive"></i> Archived Notes
+          </button>
+
+          <div class="nav-section-title">Control</div>
+          <button class="nav-btn" data-section="trash" id="nav-trash">
+            <i class="fa-solid fa-trash-can"></i> Trash Bin
+          </button>
+          
+          <div class="nav-section-title">Preferences</div>
+          <button class="nav-btn" data-section="profile" id="nav-profile">
+            <i class="fa-solid fa-user-gear"></i> Profile
+          </button>
+          <button class="nav-btn" data-section="settings" id="nav-settings">
+            <i class="fa-solid fa-gears"></i> Settings
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-badge" id="userBadgeBtn">
+            <div class="profile-avatar" id="avatarInitials">U</div>
+            <div class="user-info">
+              <span class="user-name" id="badgeUserName">User Name</span>
+              <span class="user-status">Free Account</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Panel -->
+      <main class="main-panel">
+        
+        <!-- Header (top navbar) -->
+        <header class="top-header">
+          <div class="header-left">
+            <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Open menu">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <h2 class="view-title" id="pageTitle">Dashboard</h2>
+          </div>
+          
+          <div class="header-right">
+            <!-- Global Search -->
+            <div class="search-container" id="searchBarContainer">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" placeholder="Search notes..." class="search-input" id="globalSearch" />
+              <button class="clear-search-btn" id="clearSearchBtn" style="display:none">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            
+            <button class="theme-quick-toggle" id="themeQuickToggleBtn" aria-label="Toggle theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            
+            <div class="profile-icon-btn" id="profileIconBtn">U</div>
+          </div>
+        </header>
+
+        <!-- Main Content Scroll Area -->
+        <div class="content-container">
+          
+          <!-- View 1: Dashboard -->
+          <div class="view-pane active" id="view-dashboard">
+            <div class="dashboard-welcome">
+              <h1 id="welcomeMessage">Welcome back, User 👋</h1>
+              <p class="subtitle">Here's a summary of your workspace.</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+              <div class="stat-card" data-section="active">
+                <div class="stat-icon active-icon"><i class="fa-solid fa-note-sticky"></i></div>
+                <div class="stat-info">
+                  <h3 id="statActiveCount">0</h3>
+                  <p>Active Notes</p>
+                </div>
+              </div>
+              <div class="stat-card" data-section="work">
+                <div class="stat-icon work-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="stat-info">
+                  <h3 id="statWorkCount">0</h3>
+                  <p>Work Notes</p>
+                </div>
+              </div>
+              <div class="stat-card" data-section="personal">
+                <div class="stat-icon personal-icon"><i class="fa-solid fa-house-user"></i></div>
+                <div class="stat-info">
+                  <h3 id="statPersonalCount">0</h3>
+                  <p>Personal Notes</p>
+                </div>
+              </div>
+              <div class="stat-card" data-section="archived">
+                <div class="stat-icon archived-icon"><i class="fa-solid fa-box-archive"></i></div>
+                <div class="stat-info">
+                  <h3 id="statArchivedCount">0</h3>
+                  <p>Archived</p>
+                </div>
+              </div>
+              <div class="stat-card" data-section="trash">
+                <div class="stat-icon trash-icon"><i class="fa-solid fa-trash-can"></i></div>
+                <div class="stat-info">
+                  <h3 id="statTrashCount">0</h3>
+                  <p>Trash</p>
+                </div>
+              </div>
+              <div class="stat-card total-card">
+                <div class="stat-icon total-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="stat-info">
+                  <h3 id="statTotalCount">0</h3>
+                  <p>Total Notes</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Notes Section -->
+            <div class="dashboard-recent">
+              <h2>Recent Notes</h2>
+              <div class="recent-list" id="recentNotesList">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- View 2: Notes (Active / Work / Personal / Archived) -->
+          <div class="view-pane" id="view-notes">
+            <!-- Note Creation Card -->
+            <div class="note-creation-card" id="noteCreationCard">
+              <input type="text" placeholder="Note Title" class="note-title-input" id="noteTitleInput" />
+              <textarea class="note-content-input" placeholder="Start typing your note here..." id="noteContentInput"></textarea>
+
+              <div class="note-footer">
+                <div class="note-options">
+                  <label for="noteCategorySelect" class="sr-only">Category</label>
+                  <select id="noteCategorySelect" class="category-dropdown">
+                    <option value="personal">🏠 Personal</option>
+                    <option value="work">💼 Work</option>
+                  </select>
+                </div>
+                <button id="addNoteBtn" class="add-note-btn">+ Add Note</button>
+              </div>
+            </div>
+
+            <!-- Note List Container -->
+            <div class="notes-list" id="notesListContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- View 3: Trash -->
+          <div class="view-pane" id="view-trash">
+            <div class="trash-notice">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Notes in Trash are automatically deleted permanently after 3 days.</span>
+            </div>
+            <div class="notes-list" id="trashListContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- View 4: Profile -->
+          <div class="view-pane" id="view-profile">
+            <div class="profile-container">
+              <div class="profile-card">
+                <div class="profile-avatar-large" id="profileAvatarLarge">U</div>
+                <div class="profile-details">
+                  <div class="form-group">
+                    <label for="profileNameInput">Full Name</label>
+                    <input type="text" id="profileNameInput" placeholder="Enter your name" class="profile-input" />
+                  </div>
+                  <button class="save-profile-btn" id="saveProfileBtn">Save Changes</button>
+                </div>
+              </div>
+
+              <!-- Stats Block inside Profile -->
+              <div class="profile-stats-block">
+                <h3>Notes Statistics</h3>
+                <div class="profile-stats-row">
+                  <span>Active Notes</span>
+                  <span class="badge badge-active" id="profileStatActive">0</span>
+                </div>
+                <div class="profile-stats-row">
+                  <span>Archived Notes</span>
+                  <span class="badge badge-archived" id="profileStatArchived">0</span>
+                </div>
+                <div class="profile-stats-row">
+                  <span>Trash Notes</span>
+                  <span class="badge badge-trash" id="profileStatTrash">0</span>
+                </div>
+                <hr />
+                <div class="profile-stats-row total-row">
+                  <span>Total Notes</span>
+                  <span class="badge badge-total" id="profileStatTotal">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- View 5: Settings -->
+          <div class="view-pane" id="view-settings">
+            <div class="settings-container">
+              
+              <!-- Appearance -->
+              <div class="settings-group">
+                <h3>Appearance</h3>
+                <p class="settings-desc">Choose your preferred style for the application.</p>
+                <div class="theme-selection">
+                  <label class="theme-option">
+                    <input type="radio" name="app-theme" value="light" checked />
+                    <div class="theme-box light-box">
+                      <i class="fa-solid fa-sun"></i>
+                      <span>Light Theme</span>
+                    </div>
+                  </label>
+                  <label class="theme-option">
+                    <input type="radio" name="app-theme" value="dark" />
+                    <div class="theme-box dark-box">
+                      <i class="fa-solid fa-moon"></i>
+                      <span>Dark Theme</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Notes Tools -->
+              <div class="settings-group">
+                <h3>Notes Administration</h3>
+                <p class="settings-desc">Backup your notes or reset the workspace.</p>
+                <div class="settings-actions">
+                  <div class="download-dropdown-container">
+                    <button class="settings-action-btn download-btn" id="downloadNotesBtn">
+                      <i class="fa-solid fa-download"></i> Download Notes <i class="fa-solid fa-chevron-down caret"></i>
+                    </button>
+                    <div class="download-dropdown" id="downloadDropdown">
+                      <button data-format="json"><i class="fa-solid fa-file-code"></i> Save as JSON</button>
+                      <button data-format="txt"><i class="fa-solid fa-file-lines"></i> Save as TXT</button>
+                    </div>
+                  </div>
+                  
+                  <button class="settings-action-btn delete-all-btn" id="deleteAllNotesBtn">
+                    <i class="fa-solid fa-trash-arrow-up"></i> Delete All Notes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+      <!-- Sidebar Backdrop for Mobile -->
+      <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    </div>
+
+    <!-- Edit Note Modal -->
+    <div class="modal-overlay" id="editNoteModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Edit Note</h3>
+          <button class="close-modal-btn" id="closeEditModalBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="editNoteTitle">Title</label>
+            <input type="text" id="editNoteTitle" class="modal-input" placeholder="Title" />
+          </div>
+          <div class="form-group">
+            <label for="editNoteCategory">Category</label>
+            <select id="editNoteCategory" class="modal-select">
+              <option value="personal">🏠 Personal</option>
+              <option value="work">💼 Work</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editNoteContent">Content</label>
+            <textarea id="editNoteContent" class="modal-textarea" placeholder="Start typing your note here..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn-secondary" id="cancelEditBtn">Cancel</button>
+          <button class="modal-btn-primary" id="saveEditBtn">Save Changes</button>
         </div>
       </div>
+    </div>
 
-      <!-- Tabs -->
-      <div class="tabs">
-        <span class="tab allnotes active" >All Notes</span>
-        <span class="tab openwork">Work</span>
-        <span class="tab openpersonal">Personal</span>
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+      <div class="modal-card confirm-card">
+        <div class="modal-header">
+          <h3 id="confirmTitle">Confirm Action</h3>
+          <button class="close-modal-btn" id="closeConfirmModalBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <p id="confirmMessage">Are you sure you want to perform this action?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn-secondary" id="cancelConfirmBtn">Cancel</button>
+          <button class="modal-btn-primary danger-btn" id="okConfirmBtn">Confirm</button>
+        </div>
       </div>
-
-      <!-- work section -->
-    <div class="work" style="display: none;">
-        <h1>Work Notes</h1>
-        <p class="subtitle">Your work-related notes will appear here.</p>
     </div>
 
-    <!-- personal section -->
-    <div class="personal" style="display: none;">
-        <h1>Personal Notes</h1>
-        <p class="subtitle">Your personal notes will appear here.</p>
-    </div>
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-      <!-- note area -->
-      <div class="content">
-        
-      </div>
-      <!-- Archive Container -->
-    </div>
-    <div class="archive" style="display: none;">
-      <h1>Archived Notes</h1>
-      <p class="subtitle">Your archived notes will appear here.</p>
-    </div>
-
-  <div class="trash" style="display: none;">
-    <h1>Trash Notes</h1>
-    <p class="subtitle">Your deleted notes will appear here.</p>
-  </div>
-  </section>
-
-  <script src="script.js"></script>
-</body>
-
-
-
-
+    <script src="script.js"></script>
+  </body>
 </html>
