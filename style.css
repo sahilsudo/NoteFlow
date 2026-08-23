@@ -257,11 +257,13 @@ body {
 }
 
 /* Hide menu toggle icon when sidebar is open */
-.sidebar:not(.collapsed) + .main-panel .menu-toggle-btn,
-.sidebar.active + .main-panel .menu-toggle-btn {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+@media (min-width: 1025px) {
+    .sidebar:not(.collapsed) + .main-panel .menu-toggle-btn,
+    .sidebar.active + .main-panel .menu-toggle-btn {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
 }
 
 .view-title {
@@ -562,6 +564,7 @@ body {
   gap: 16px;
 }
 
+
 /* Empty states */
 .empty-state {
   grid-column: 1 / -1;
@@ -628,6 +631,7 @@ body {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -662,6 +666,7 @@ body {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
