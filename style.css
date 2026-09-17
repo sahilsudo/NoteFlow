@@ -121,6 +121,11 @@ body {
   flex-grow: 1;
   padding: 20px 12px;
   overflow-y: auto;
+  /* sidebar-scrollbar: thin; */
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .nav-section-title {
